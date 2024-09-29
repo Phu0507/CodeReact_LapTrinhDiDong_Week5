@@ -79,7 +79,9 @@ function HomeScreen({ navigation }) {
           </View>
         </View>
         <View style={{ flex: 1, alignItems:'center'}}> 
-          <TouchableOpacity  style={[styles.buttonMau, { backgroundColor: 'white' , flexDirection:'row'}]}>
+          <TouchableOpacity  style={[styles.buttonMau, { backgroundColor: 'white' , flexDirection:'row'}]}
+          onPress={() => navigation.navigate('ScreenChonMau_1')}
+          >
             <Text >4 MÀU-CHỌN MÀU</Text>
             <Text style={{alignItems:'flex-end'}}>></Text>
           </TouchableOpacity>
@@ -94,12 +96,53 @@ function HomeScreen({ navigation }) {
     </View>
   );
 }
+
+function ScreenChonMau_1({ navigation }) {
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 1 , flexDirection:'row', backgroundColor:'white'}}>
+        <Image style={{height:132, width: 112}} source={require('./assets/vs_blue.jpg')}/>
+        <Text style={styles.textTen}>Điện Thoại Vsmart Joy 3 Hàng chính hãng</Text>
+      </View>
+      <View style={{ flex: 3, backgroundColor:'#C4C4C4' }}>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.textChonMau}>Chọn một màu bên dưới:</Text>
+      </View>
+      <View style={{ flex: 7, flexDirection:'column', justifyContent:'space-between', alignItems:'center',
+      }}>
+        <TouchableOpacity
+            style={[styles.buttonChonMau, { backgroundColor: '#C5F1FB' }]}>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={[styles.buttonChonMau, { backgroundColor: '#F30D0D' }]}>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={[styles.buttonChonMau, { backgroundColor: '#000000' }]}>
+        </TouchableOpacity>
+        <TouchableOpacity
+            style={[styles.buttonChonMau, { backgroundColor: '#234896' }]}>
+        </TouchableOpacity>
+      </View>
+      
+      <View style={{ flex: 2 ,alignItems:'center'}}>
+        <TouchableOpacity
+            style={[styles.buttonXong, { backgroundColor: '#1952E294'}]}>
+            <Text style={[styles.buttonText,{color:'white'}]}>XONG</Text>
+        </TouchableOpacity>
+      </View>
+        
+      </View>
+    </View>
+  );
+}
+
 const Stack = createNativeStackNavigator();
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Home" component={HomeScreen}/>
+        <Stack.Screen name="ScreenChonMau_1" component={ScreenChonMau_1} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -174,6 +217,38 @@ const styles = StyleSheet.create({
     width: 280,
     borderRadius: 10,
   },
+  textTen: {
+    fontFamily: 'Roboto',
+    fontSize: 15,
+    fontWeight: 400,
+    lineHeight: 17.58,
+    textAlign: 'left',
+    marginTop: 15,
+    marginRight:50,
+  },
+  textChonMau:{
+  fontFamily: 'Roboto',
+  fontSize: 18,
+  fontWeight: 400,
+  lineHeight: 21.09,
+  textAlign: 'left',
+  marginTop: 10,
+  marginLeft:15,
+  },
+  buttonChonMau:{
+    height:70,
+    width:75,
+  },
+  buttonXong: {
+    height:35,
+    borderRadius:10,
+    width:300,
+    marginTop:40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth:1,
+    borderColor:'#CA1536',
+  },
 });
 
-export default HomeScreen;
+export default App;
